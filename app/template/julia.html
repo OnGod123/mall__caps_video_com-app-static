@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Julia Chatbox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="static/css/julia.css" />
+</head>
+<body>
+
+<!-- Floating chatbox icon -->
+<div id="chatbox-icon" onclick="toggleChatbox()">
+  <i class="fa-solid fa-messages"></i>
+</div>
+
+<!-- Chatbox -->
+<div id="chatbox">
+  <!-- Instructions -->
+  <div class="instruction">1. Type your message or click the mic to speak.</div>
+  <div class="instruction">2. Press the up arrow to send.</div>
+  <div class="instruction">3. If your message is a link, it will auto-fetch.</div>
+  <div class="instruction">4. All data is sent via WebSocket securely.</div>
+  <div class="instruction">5. Speak clearly and briefly.</div>
+  <div class="instruction">6. Julia supports both voice and text.</div>
+  <div class="instruction">7. Dark mode is always on.</div>
+  <div class="instruction">8. Welcome to Julia Chat!</div>
+
+  <!-- Input -->
+  <div class="input-section">
+    <textarea id="messageInput" placeholder="Message Julia..."></textarea>
+    <button class="mic" onclick="startSpeechToText()">
+      <i class="fa-solid fa-microphone"></i>
+    </button>
+    <button class="submit" onclick="sendMessage()">
+      <i class="fa-solid fa-up-long"></i>
+    </button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="static/javscript/julia.js"></script>
+
+</body>
+</html>

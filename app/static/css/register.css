@@ -1,0 +1,119 @@
+:root {
+  --bg-color: #1d1d1d;
+  --text-color: #fff;
+  --cube-border: #00f;
+  --cube-shadow: rgba(0, 0, 255, 0.2);
+}
+
+body.light-mode {
+  --bg-color: #fff;
+  --text-color: #000;
+  --cube-border: #00f;
+  --cube-shadow: rgba(0, 0, 255, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+.form {
+  width: 320px;
+  padding: 20px;
+}
+
+.form h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.block-cube {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.block-cube input,
+.block-cube button {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.block-cube input:focus,
+.block-cube button:focus {
+  outline: none;
+}
+
+.block-cube::before,
+.block-cube::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.block-cube::before {
+  border: 2px solid var(--cube-border);
+  transform: translate(5px, 5px);
+}
+
+.block-cube::after {
+  background: var(--cube-shadow);
+  transform: translate(-5px, -5px);
+}
+
+.block-cube:hover::before,
+.block-cube:hover::after {
+  transform: translate(0px, 0px);
+}
+
+.btn {
+  background: #00f;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.google {
+  background: #fff;
+  color: #333;
+  font-weight: bold;
+}
+
+.google:hover {
+  background: #ddd;
+}
+
+.mode-toggle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.mode-toggle button {
+  background: none;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  padding: 5px 10px;
+  cursor: pointer;
+}

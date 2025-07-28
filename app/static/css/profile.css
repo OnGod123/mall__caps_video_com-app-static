@@ -1,0 +1,99 @@
+body {
+  background-color: #111;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+.profile-container {
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.block-cube {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  border-radius: 15px;
+  box-shadow:
+    4px 4px 8px #000,
+    -4px -4px 8px #222;
+  padding: 20px;
+}
+
+body.light-mode .block-cube {
+  background: linear-gradient(145deg, #e0e0e0, #ffffff);
+  box-shadow:
+    4px 4px 8px #ccc,
+    -4px -4px 8px #fff;
+}
+
+.profile-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #333;
+}
+
+.profile-info .username {
+  text-align: center;
+  margin: 10px 0 5px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.profile-info .bio {
+  text-align: center;
+  font-size: 0.95em;
+  color: #bbb;
+}
+
+.status-update textarea {
+  width: 100%;
+  min-height: 80px;
+  background-color: #1a1a1a;
+  color: #eee;
+  border: none;
+  border-radius: 10px;
+  resize: vertical;
+  padding: 10px;
+  font-size: 1em;
+  outline: none;
+}
+
+body.light-mode .status-update textarea {
+  background-color: #f0f0f0;
+  color: #111;
+}
+
+@media (max-height: 500px) {
+  body {
+    align-items: flex-start;
+    padding: 20px 0;
+  }
+}
+
+#toggle-mode {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+}

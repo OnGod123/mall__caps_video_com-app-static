@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Search</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="css/search.css" href="search.css">
+</head>
+<body>
+
+  <div class="cube">
+    <form id="searchForm" class="search-box" method="GET" action="/search">
+      <input type="text" name="query" placeholder="Search video by transcription" required>
+      <button type="submit">
+        <i class="fa-solid fa-nfc-magnifying-glass"></i>
+      </button>
+    </form>
+  </div>
+
+  <div id="results" class="video-result cube">
+    <!-- Videos will be dynamically injected here -->
+  </div>
+
+  <script src="javascript/search.js"></script>
+</body>
+</html>
+

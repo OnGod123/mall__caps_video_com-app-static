@@ -1,0 +1,118 @@
+body {
+  background: #1f1f1f;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 0;
+}
+
+.form {
+  width: 300px;
+  margin-bottom: 60px;
+}
+
+.control {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.control h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.block-cube {
+  position: relative;
+}
+
+.block-input input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  outline: none;
+  position: relative;
+  z-index: 2;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  padding: 12px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.block-cube .bg,
+.block-cube .bg-top,
+.block-cube .bg-right {
+  position: absolute;
+  z-index: 0;
+  background: #333;
+  transition: 0.3s ease;
+  pointer-events: none;
+}
+
+.block-cube .bg {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.block-cube .bg-top {
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.block-cube .bg-right {
+  top: 0;
+  right: -4px;
+  width: 4px;
+  height: 100%;
+}
+
+.block-cube-hover:hover .bg,
+.block-cube-hover:hover .bg-top,
+.block-cube-hover:hover .bg-right {
+  background: #444;
+}
+
+.text {
+  position: relative;
+  z-index: 2;
+}
+
+.section-label {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.credits {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.credits a {
+  color: #ccc;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.credits a:hover {
+  color: #fff;
+}
