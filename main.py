@@ -26,7 +26,9 @@ db_init_app(app)
 init_elasticsearch()
 r = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
-
+with app.app_context():
+    if not VideoDocument._index.exists():
+        VideoDocument.init()
 
 
 @app.before_first_request
