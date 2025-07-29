@@ -1,7 +1,7 @@
-ifrom elasticsearch_dsl import Document, Text, Keyword, connections
-from config import ELASTIC_HOST, ELASTIC_USER, ELASTIC_PASS, INDEX_NAME
+from elasticsearch_dsl import Document, Text, Keyword, connections
+from app.config.config import Config
 from flask import Flask, request, jsonify, redirect, render_template, session, make_response
-from flask_sqlalchemy import SQLAlchemy
+from .database_engine import db
 from flask_wtf.csrf import CSRFProtect
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
@@ -43,8 +43,8 @@ class Reset(db.Model):
     expires_at = db.Column(db.DateTime)
 
 connections.create_connection(
-    hosts=[ELASTIC_HOST],
-    http_auth=(ELASTIC_USER, ELASTIC_PASS),
+    hosts=[Config.ELASTIC_HOST],
+    basic_auth=(Config.ELASTIC_USER, Config.ELASTIC_PASS),
     verify_certs=False,
     timeout=90
 )

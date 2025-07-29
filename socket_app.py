@@ -1,7 +1,7 @@
-from flask import Flask, requestifrom flask_socketio import SocketIO, Namespace, emit
+from flask import Flask, request
+from flask_socketio import SocketIO, Namespace, emit
 import jwt
-from analyze_with_openai import analyze_video_with_openai
-from Open_ai from analyze_video_with_openai
+from Open_ai.analyze_with_openai import analyze_video_with_openai
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "your-secret"
 socketio = SocketIO(app, cors_allowed_origins="*")

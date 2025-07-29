@@ -6,9 +6,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_redis import FlaskRedis
 from flask_cors import CORS
 from flask_socketio import SocketIO
-from sockets_app import JuliaNamespace  # Correct import
-from database.database_engine import Base, engine, SessionLocal
-from database.models import *
+from socket_app import JuliaNamespace  # Correct import
+from app.database.database_engine import db
+from app.database.models import CreateUser, Login, Profile, Reset, Videodocument, Video_Document
+
 app = Flask(__name__)
 app.config.from_object('config.Config')
 
@@ -16,13 +17,12 @@ app.config.from_object('config.Config')
 bcrypt = Bcrypt(app)
 csrf = CSRFProtect(app)
 mail = Mail(app)
-db = SQLAlchemy(app)
 r = FlaskRedis(app)
 
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-db_init(app)
+db_init_app(app)
 
 r = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
