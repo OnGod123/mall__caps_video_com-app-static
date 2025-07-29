@@ -1,10 +1,35 @@
+<script>
 const socket = io("/julia", {
-    query: { token: "your_jwt_token" }
-  });
+  query: { token: "your_jwt_token" }
+});
 
+// ✅ Corrected: Socket.IO uses "connect", not onopen
+socket.on("connect", () => console.log("Connected to WebSocket server"));
 
-socket.onopen = () => console.log("Connected to WebSocket server");
-socket.onerror = (error) => console.error("WebSocket error:", error);
+// ✅ Corrected: Socket.IO uses "error" event, not socket.onerror
+socket.on("error", (error) => {
+  console.error("WebSocket error:", error);
+  alert("Server error: " + (error?.error || "Unknown error"));
+});
+
+// ✅ Added: Handle server "response" events
+socket.on("response", (data) => {
+  console.log("Server response:", data);
+  // Optional: render to UI if you have a div with id="results"
+  const resultsBox = document.getElementById("results");
+  if (resultsBox) {
+    resultsBox.innerHTML = "";
+    data.results.forEach(result => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <h3>${result.title}</h3>
+        <a href="${result.url}" target="_blank">${result.url}</a>
+        <pre>${JSON.stringify(result.ai_insight || {}, null, 2)}</pre>
+      `;
+      resultsBox.appendChild(div);
+    });
+  }
+});
 
 function toggleChatbox() {
   const box = document.getElementById("chatbox");
@@ -16,7 +41,8 @@ function sendMessage() {
   const message = textarea.value.trim();
 
   if (message) {
-    socket.send(message);
+    // ✅ Corrected: Use socket.emit instead of socket.send
+    socket.emit("message", { q: message });
     textarea.value = "";
 
     // Auto-fetch if URL
@@ -51,3 +77,5 @@ function startSpeechToText() {
 
   recognition.start();
 }
+</script>
+
