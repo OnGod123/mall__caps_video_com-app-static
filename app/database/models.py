@@ -42,13 +42,6 @@ class Reset(db.Model):
     reset_token = db.Column(db.String(100))
     expires_at = db.Column(db.DateTime)
 
-connections.create_connection(
-    hosts=[Config.ELASTIC_HOST],
-    basic_auth=(Config.ELASTIC_USER, Config.ELASTIC_PASS),
-    verify_certs=False,
-    timeout=90
-)
-
 class VideoDocument(Document):
     title = Text()
     url = Text()
@@ -68,8 +61,4 @@ class Video_Document(Document):
         name = "INDEX_NAME_2"
 
 
-# Create index if not exists
-if not VideoDocument._index.exists():
-    VideoDocument.init()
-if not Video_Document._index.exist():
-    Video_Document.init()
+

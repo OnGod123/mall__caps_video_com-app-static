@@ -7,7 +7,7 @@ from flask_redis import FlaskRedis
 from flask_cors import CORS
 from flask_socketio import SocketIO
 from socket_app import JuliaNamespace  # Correct import
-from app.database.database_engine import db
+from app.database.database_engine import db, init_elasticsearch
 from app.database.models import CreateUser, Login, Profile, Reset, Videodocument, Video_Document
 
 app = Flask(__name__)
@@ -23,15 +23,10 @@ CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 db_init_app(app)
-
+init_elasticsearch()
 r = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
-connections.create_connection(
-    hosts=[Config.ELASTIC_HOST],
-    http_auth=(Config.ELASTIC_USER, Config.ELASTIC_PASS) if Config.ELASTIC_USER else None,
-    verify_certs=False,
-    timeout=90
-)
+
 
 
 @app.before_first_request
