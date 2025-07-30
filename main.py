@@ -6,6 +6,7 @@ from app.extensions import csrf
 from flask_sqlalchemy import SQLAlchemy
 from flask_redis import FlaskRedis
 from flask_cors import CORS
+from app.extensions import r, bcrypt
 from flask_socketio import SocketIO
 from socket_app import JuliaNamespace  # Correct import
 from app.database.database_engine import db, init_elasticsearch,db_init_app
@@ -15,18 +16,17 @@ import redis
 app = Flask(__name__)
 app.config.from_object('app.config.config.Config')
 
-# Extensions
-bcrypt = Bcrypt(app)
-csrf.init_app(app)
-mail = Mail(app)
-r = FlaskRedis(app)
+#extensions
 
+bcrypt.init_app(app)
+csrf.init_app(app)
+mail.init_app(app)
+r.init_app(app)
+db_init_app(app)
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
-
 db_init_app(app)
 init_elasticsearch()
-r = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
 with app.app_context():
     if not VideoDocument._index.exists():

@@ -1,6 +1,6 @@
 from flask import Blueprint, session, make_response, render_template
-from main import r
-from app.handlers.auth_helpers import token_required  # Adjust import path as needed
+from app.extensions import r
+from app.handlers.login_routes import token_required  
 
 logout_bp = Blueprint('logout_bp', __name__)
 
