@@ -7,11 +7,12 @@ from flask_redis import FlaskRedis
 from flask_cors import CORS
 from flask_socketio import SocketIO
 from socket_app import JuliaNamespace  # Correct import
-from app.database.database_engine import db, init_elasticsearch
-from app.database.models import CreateUser, Login, Profile, Reset, Videodocument, Video_Document
-
+from app.database.database_engine import db, init_elasticsearch,db_init_app
+from app.database.models import CreateUser, Login, Profile, Reset, VideoDocument, Video_Document
+from app.config.config import Config
+import redis
 app = Flask(__name__)
-app.config.from_object('config.Config')
+app.config.from_object('app.config.config.Config')
 
 # Extensions
 bcrypt = Bcrypt(app)
@@ -28,7 +29,7 @@ r = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
 with app.app_context():
     if not VideoDocument._index.exists():
-        VideoDocument.init()
+        VideoDocument.init(i)
 
 
 @app.before_first_request
