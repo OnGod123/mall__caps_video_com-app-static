@@ -4,9 +4,9 @@ from flask_mail import Message
 from datetime import datetime, timedelta
 import secrets
 
-from yourapp import db, mail
-from app.models import CreateUser, Reset
-from app.auth_routes import token_required
+from app import db, mail
+from app.database.models import CreateUser, Reset
+from app.handlers.auth_routes import token_required
 
 forgot_password_bp = Blueprint('forgot_password_bp', __name__)
 csrf_protect = CSRFProtect()

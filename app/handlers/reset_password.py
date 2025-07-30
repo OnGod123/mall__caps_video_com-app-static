@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request
 from flask_wtf.csrf import csrf
 from datetime import datetime
-from yourapp.models import CreateUser, Reset
-from yourapp import db, bcrypt
+from app.database.models import CreateUser, Reset
+from app.database import db, bcrypt
 
 reset_password_bp = Blueprint('reset_password_bp', __name__)
 

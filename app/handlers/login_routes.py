@@ -4,8 +4,8 @@ from flask import Blueprint, request, jsonify, redirect, url_for, make_response,
 from datetime import datetime, timedelta
 from functools import wraps
 import jwt, json
-from yourapp.models import CreateUser
-from yourapp import db, app, r
+from app.database.models import CreateUser
+from main import db, app, r
 from flask_bcrypt import Bcrypt
 
 auth_bp = Blueprint('auth_bp', __name__)
