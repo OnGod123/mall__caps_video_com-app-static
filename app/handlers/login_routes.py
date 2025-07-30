@@ -5,9 +5,9 @@ from datetime import datetime, timedelta
 from functools import wraps
 import jwt, json
 from app.database.models import CreateUser
-from main import db, app, r
+from app.database.database_engine import db
 from flask_bcrypt import Bcrypt
-
+from app.extensions import csrf
 auth_bp = Blueprint('auth_bp', __name__)
 
 
@@ -26,7 +26,7 @@ def token_required(f):
     return decorated
 
 
-@app.route('/login', methods=['GET'])
+@auth_bp.route('/login', methods=['GET'])
 @csrf.exempt
 def login():
     username = request.args.get('username')

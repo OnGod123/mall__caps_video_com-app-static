@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
-from flask_wtf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect
+from app.extensions import csrf
 from flask_sqlalchemy import SQLAlchemy
 from flask_redis import FlaskRedis
 from flask_cors import CORS
@@ -16,7 +17,7 @@ app.config.from_object('app.config.config.Config')
 
 # Extensions
 bcrypt = Bcrypt(app)
-csrf = CSRFProtect(app)
+csrf.init_app(app)
 mail = Mail(app)
 r = FlaskRedis(app)
 
@@ -29,16 +30,12 @@ r = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
 with app.app_context():
     if not VideoDocument._index.exists():
-        VideoDocument.init(i)
-
-
-@app.before_first_request
-def create_tables():
-    Base.metadata.create_all(bind=engine)
+        VideoDocument.init()
+    db.create_all()
 
 # === Import Blueprints ===
-from handlers.auth_routes import auth_bp
-from app.handlers.forgot_password_routes import forgot_password_bp
+from app.handlers. Oauth_routes import auth_bp
+from app.handlers.forget_password_routes import forgot_password_bp
 from app.handlers.logout_routes import logout_bp
 from app.handlers.register_routes import register_bp
 from app.handlers.reset_password_routes import reset_password_bp

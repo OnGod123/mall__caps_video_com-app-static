@@ -1,12 +1,11 @@
 from flask import Blueprint, render_template, request
-from flask_wtf.csrf import CSRFProtect, csrf
+from flask_wtf.csrf import CSRFProtect
 from flask_mail import Message
 from datetime import datetime, timedelta
 import secrets
-
-from app import db, mail
 from app.database.models import CreateUser, Reset
-from app.handlers.auth_routes import token_required
+from app.handlers.login_routes import token_required
+from app.extensions import csrf
 
 forgot_password_bp = Blueprint('forgot_password_bp', __name__)
 csrf_protect = CSRFProtect()

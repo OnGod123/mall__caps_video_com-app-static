@@ -12,9 +12,10 @@ import redis
 import os
 import secrets
 import json
+INDEX_NAME = os.getenv("INDEX_NAME")
 
 class CreateUser(db.Model):
-    __tablename__ =  "CreateUser"
+    __tablename__ =  "create_user"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -49,7 +50,7 @@ class VideoDocument(Document):
     multi_title = Keyword(multi=True)
 
     class Index:
-        name = "INDEX_NAME"
+        name = INDEX_NAME
 
 class Video_Document(Document):
     title = Text()
@@ -58,7 +59,7 @@ class Video_Document(Document):
     multi_title = Keyword(multi=True)
 
     class Index:
-        name = "INDEX_NAME_2"
+        name =  INDEX_NAME
 
 
 
