@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Stream Login</title>
+  <title> Stream </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/css/loginin.css">
+  <link rel="stylesheet" href="static/css/register.css">
 </head>
 <body>
   <form class="form">
-    <h1>Stream Login</h1>
+    <h1>Stream</h1>
 
     <div class="block-cube">
       <input type="text" placeholder="Username" required>
+    </div>
+
+    <div class="block-cube">
+      <input type="email" placeholder="Email" required>
     </div>
 
     <div class="block-cube">
@@ -19,7 +23,7 @@
     </div>
 
     <div class="block-cube">
-      <button type="submit" class="btn">Log In</button>
+      <button type="submit" class="btn">register</button>
     </div>
 
     <div class="block-cube">
@@ -27,9 +31,10 @@
     </div>
 
     <div class="mode-toggle">
-      <button type="button"/>Toggle Light/Darki Mode</button>
+      <button type="button" id="toggle-mode">Toggle Light/Dark Mode</button>
     </div>
   </form>
-  <script src="/static/javascript/loginin.js"></script>
+
+  <script src="static/javascript/register.js"></script>
 </body>
 </html>

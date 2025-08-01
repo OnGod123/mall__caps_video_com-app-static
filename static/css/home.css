@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-  background-image: url('your-background.jpg'); /* Replace with actual image path */
+  background-image: url('/static/css/image/your-background.jpg'); /* Replace with actual image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

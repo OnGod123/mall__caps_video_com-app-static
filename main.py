@@ -34,12 +34,13 @@ with app.app_context():
     db.create_all()
 
 # === Import Blueprints ===
-from app.handlers. Oauth_routes import auth_bp
+from app.handlers.Oauth_routes import auth_bp 
+from app.handlers.login_routes import auth_bp as login
 from app.handlers.forget_password_routes import forgot_password_bp
 from app.handlers.logout_routes import logout_bp
 from app.handlers.register_routes import register_bp
 from app.handlers.reset_password_routes import reset_password_bp
-from app.handlers.profile_routes import profile_bp as profile_view_bp
+from app.handlers.profile_routes import profile_bp as user_profile
 from app.handlers.profile_updates_routes import profile_bp as profile_update_bp
 from app.handlers.scrape_vo1_routes import scrape_v01_bp
 from app.handlers.scrape_vo3_routes import scrape_v03_bp
@@ -50,11 +51,12 @@ from app.handlers.search_routes_03 import search_v03_bp
 
 # === Register Blueprints ===
 app.register_blueprint(auth_bp)
+app.register_blueprint(login)
 app.register_blueprint(forgot_password_bp)
 app.register_blueprint(logout_bp)
 app.register_blueprint(register_bp)
 app.register_blueprint(reset_password_bp)
-app.register_blueprint(profile_view_bp)
+app.register_blueprint(user_profile)
 app.register_blueprint(profile_update_bp)
 app.register_blueprint(search_v01_bp)
 app.register_blueprint(search_v03_bp)

@@ -16,7 +16,7 @@ def search(current_user):
     term = request.args.get("q", "").strip()
 
     if not term:
-        return render_template("search.html")
+        return render_template("search_03.html")
 
     lemmas, entities = extract_nlp_features(term)
     s = Search(index=INDEX_NAME_2)
