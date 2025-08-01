@@ -1,10 +1,8 @@
 from flask import Blueprint, render_template, request, jsonify
-from app.databas.models import Profile, creatuser  # Assuming User model exists
-from login_routes import token_required
-from yourapp import db
-
-profile_bp = Blueprint('profile_bp', __name__)
-
+from app.database.models import Profile, CreateUser  
+from app.handlers.login_routes import token_required
+from app.extensions import db
+profile_bp = Blueprint('profile_view_bp', __name__)
 @profile_bp.route('/profile/<identifier>', methods=['GET'])
 @token_required
 def profile(current_user, identifier):

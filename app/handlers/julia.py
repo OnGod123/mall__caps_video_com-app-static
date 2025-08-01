@@ -1,6 +1,6 @@
 
 from flask import Blueprint, render_template
-from login_routes import token_required  # Adjust import path as needed
+from app.handlers.login_routes import token_required  
 
 julia_bp = Blueprint('julia_bp', __name__)
 

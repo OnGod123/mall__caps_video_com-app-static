@@ -9,6 +9,7 @@ from flask_cors import CORS
 from app.extensions import r, bcrypt
 from flask_socketio import SocketIO
 from socket_app import JuliaNamespace  # Correct import
+from app.extensions import mail
 from app.database.database_engine import db, init_elasticsearch,db_init_app
 from app.database.models import CreateUser, Login, Profile, Reset, VideoDocument, Video_Document
 from app.config.config import Config
@@ -22,7 +23,6 @@ bcrypt.init_app(app)
 csrf.init_app(app)
 mail.init_app(app)
 r.init_app(app)
-db_init_app(app)
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 db_init_app(app)
@@ -40,14 +40,13 @@ from app.handlers.logout_routes import logout_bp
 from app.handlers.register_routes import register_bp
 from app.handlers.reset_password_routes import reset_password_bp
 from app.handlers.profile_routes import profile_bp as profile_view_bp
-from app.handlers.update_profile_routes import profile_bp as profile_update_bp
-from app.handlers.search_routes import search_bp
-from app.handlers.scrape_v01_routes import scrape_v01_bp
-from app.handlers.scrape_v03_routes import scrape_v03_bp
-from app.handlers.julia_routes import julia_bp
-from app.handlers.home_routes import home_bp
-from app.handlers.search_v01_routes import search_v01_bp
-from app.handlers.search_v03_routes import search_v03_bp
+from app.handlers.profile_updates_routes import profile_bp as profile_update_bp
+from app.handlers.scrape_vo1_routes import scrape_v01_bp
+from app.handlers.scrape_vo3_routes import scrape_v03_bp
+from app.handlers.julia import julia_bp
+from app.handlers.homes_routes import home_bp
+from app.handlers.search_routes_01 import search_v01_bp
+from app.handlers.search_routes_03 import search_v03_bp
 
 # === Register Blueprints ===
 app.register_blueprint(auth_bp)
@@ -57,13 +56,13 @@ app.register_blueprint(register_bp)
 app.register_blueprint(reset_password_bp)
 app.register_blueprint(profile_view_bp)
 app.register_blueprint(profile_update_bp)
-app.register_blueprint(search_bp)
+app.register_blueprint(search_v01_bp)
+app.register_blueprint(search_v03_bp)
 app.register_blueprint(scrape_v01_bp)
 app.register_blueprint(scrape_v03_bp)
 app.register_blueprint(julia_bp)
 app.register_blueprint(home_bp)
-app.register_blueprint(search_v01_bp)
-app.register_blueprint(search_v03_bp)
+
 
 # === Register WebSocket Namespace ===
 socketio.on_namespace(JuliaNamespace("/julia"))

@@ -1,13 +1,13 @@
 from flask import Blueprint, request, render_template, jsonify
 from flask_mail import Message
-from yourapp import db, bcrypt, mail
-from models import CreateUser
-from flask_wtf.csrf import csrf_exempt
+from app.extensions import db, bcrypt, mail
+from app.database.models import CreateUser
+from app.extensions import csrf
 
 register_bp = Blueprint('register_bp', __name__)
 
 @register_bp.route('/register', methods=['GET', 'POST'])
-@csrf_exempt  
+@csrf.exempt
 def register():
     if request.method == 'GET':
         return render_template('register.html')  # Your HTML form here

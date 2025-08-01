@@ -1,4 +1,4 @@
-from nlp_utils import extract_entities, nlp, extract_keywords_from_transcript
+from app.utils.nlp_utils import extract_entities, nlp, extract_keywords_from_transcript
 
 def index_results_in_elasticsearch():
     for item in results:

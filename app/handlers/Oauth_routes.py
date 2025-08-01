@@ -19,7 +19,7 @@ google = oauth.register(
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route("Google/login")
+@auth_bp.route("/Google/login")
 def login():
     redirect_uri = url_for("auth.auth_callback", _external=True)
     return google.authorize_redirect(redirect_uri)
