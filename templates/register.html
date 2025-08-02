@@ -7,34 +7,31 @@
   <link rel="stylesheet" href="static/css/register.css">
 </head>
 <body>
-  <form class="form">
-    <h1>Stream</h1>
+  <form class="form" method="post" action="/register">
+  <h1>Stream</h1>
 
-    <div class="block-cube">
-      <input type="text" placeholder="Username" required>
-    </div>
+  <div class="block-cube">
+    <input type="text" name="name" placeholder="Name" required>
+  </div>
 
-    <div class="block-cube">
-      <input type="email" placeholder="Email" required>
-    </div>
+  <div class="block-cube">
+    <input type="text" name="username" placeholder="Username" required>
+  </div>
 
-    <div class="block-cube">
-      <input type="password" placeholder="Password" required>
-    </div>
+  <div class="block-cube">
+    <input type="email" name="gmail" placeholder="gmail" required>
+  </div>
 
-    <div class="block-cube">
-      <button type="submit" class="btn">register</button>
-    </div>
+  <div class="block-cube">
+    <input type="password" name="password" placeholder="Password" required>
+  </div>
 
-    <div class="block-cube">
-      <button type="button" class="google">Log in with Google</button>
-    </div>
-
-    <div class="mode-toggle">
-      <button type="button" id="toggle-mode">Toggle Light/Dark Mode</button>
-    </div>
-  </form>
+  <div class="block-cube">
+    <button type="submit" class="btn">register</button>
+  </div>
+</form>
 
   <script src="static/javascript/register.js"></script>
 </body>
 </html>
+

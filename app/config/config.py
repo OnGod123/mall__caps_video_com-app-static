@@ -24,6 +24,7 @@ class Config:
     MAIL_USE_TLS = os.getenv("MAIL_USE_TLS", "True").lower() == "true"
     MAIL_USERNAME = os.getenv("MAIL_USERNAME")
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+    TOKEN_EXEMPT_ROUTES = ['auth_bp.admin_create']
 
     # SQLAlchemy
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
