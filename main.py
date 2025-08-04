@@ -9,12 +9,11 @@ from flask_cors import CORS
 from app.extensions import r, bcrypt
 from flask_socketio import SocketIO
 from socket_app import JuliaNamespace  # Correct import
-from app.extensions import mail
-from app.database.database_engine import db, init_elasticsearch,db_init_app
+from app.extensions import db, mail, app
+from app.database.database_engine import init_elasticsearch,db_init_app
 from app.database.models import CreateUser, Login, Profile, Reset, VideoDocument, Video_Document
 from app.config.config import Config
 import redis
-app = Flask(__name__)
 app.config.from_object('app.config.config.Config')
 
 #extensions

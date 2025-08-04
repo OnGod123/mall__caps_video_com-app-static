@@ -1,8 +1,13 @@
 from flask import Blueprint, request, render_template, jsonify
 from flask_mail import Message
+from sqlalchemy.exc import IntegrityError
 from app.extensions import db, bcrypt, mail
 from app.database.models import CreateUser
 from app.extensions import csrf
+from app.extensions import db
+from app.database.models import Profile
+from app.handlers.profile_for_user import create_profile_for_user
+
 
 register_bp = Blueprint('register_bp', __name__)
 
@@ -12,17 +17,14 @@ def register():
     if request.method == 'GET':
         return render_template('register.html')  # Your HTML form here
 
-    # Handle form POST
     data = request.form
 
     # Basic validation
     if not all([data.get('name'), data.get('username'), data.get('password'), data.get('gmail')]):
         return jsonify({'error': 'Missing fields'}), 400
 
-    # Hash the password
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
 
-    # Create and save user
     user = CreateUser(
         name=data['name'],
         username=data['username'],
@@ -30,7 +32,15 @@ def register():
         gmail=data['gmail']
     )
     db.session.add(user)
-    db.session.commit()
+    
+    try:
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({'error': 'Email registered'}), 409
+
+    # ✅ NOW we create the profile (user.id exists)
+    create_profile_for_user(user)
 
     # Send welcome email
     msg = Message(
