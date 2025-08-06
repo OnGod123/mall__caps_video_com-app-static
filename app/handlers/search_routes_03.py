@@ -4,16 +4,18 @@ from flask_jwt_extended import decode_token
 from functools import wraps
 from app.database.models import CreateUser
 import jwt
+from app.utils.nlp_utils import extract_nlp_features 
+from elasticsearch_dsl import Search, Q
 from app.config.config import Config
 from app.handlers.login_routes import token_required
 search_v03_bp = Blueprint('search_v03_bp', __name__)
 index_name = Config.INDEX_NAME
 index_name_2 = Config.INDEX_NAME_2
 
-@search_v03_bp.route("/search/version03", methods=["GET"])
+@search_v03_bp.route("/search/version_03", methods=["GET"])
 @token_required
 def search(current_user):
-    term = request.args.get("q", "").strip()
+    term = request.args.get("query", " ").strip()
 
     if not term:
         return render_template("search_03.html")

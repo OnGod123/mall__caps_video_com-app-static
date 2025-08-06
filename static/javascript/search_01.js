@@ -2,7 +2,7 @@ document.getElementById('searchForm').addEventListener('submit', function (e) {
   e.preventDefault();
   const query = new URLSearchParams(new FormData(this)).toString();
 
-  fetch('/api/search?' + query)
+  fetch('/search/version_01?' + query)
     .then(res => res.json())
     .then(data => {
       const resultsDiv = document.getElementById('results');

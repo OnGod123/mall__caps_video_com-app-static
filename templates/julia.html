@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Julia Chatbox</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="static/css/julia.css" />
+  <link rel="stylesheet" href="/static/css/julia.css" />
 </head>
 <body>
 
 <!-- Floating chatbox icon -->
-<div id="chatbox-icon" onclick="toggleChatbox()">
+<div id="chatbox-icon">
   <i class="fa-solid fa-messages"></i>
 </div>
 
@@ -29,17 +29,25 @@
   <!-- Input -->
   <div class="input-section">
     <textarea id="messageInput" placeholder="Message Julia..."></textarea>
-    <button class="mic" onclick="startSpeechToText()">
+    <button class="mic">
+
       <i class="fa-solid fa-microphone"></i>
     </button>
-    <button class="submit" onclick="sendMessage()">
+    <button class="submit">
       <i class="fa-solid fa-up-long"></i>
     </button>
   </div>
 </div>
 
+<!-- Socket.IO client (matches Flask-SocketIO 5.x) -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<!-- Axios for HTTP requests -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="static/javscript/julia.js"></script>
+
+<!-- Your chatbox JS -->
+<script src="/static/javascript/julia.js"></script>
 
 </body>
 </html>
+
