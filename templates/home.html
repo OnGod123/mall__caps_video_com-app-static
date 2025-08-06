@@ -4,25 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stream Animation Page</title>
-  <link rel="stylesheet" href="static/css/home.css">
+  <link rel="stylesheet" href="/static/css/home.css">
 </head>
 <body>
 
   <!-- Top Navigation Bar -->
   <div class="top-bar">
-    <button>Register</button>
-    <button>Search</button>
-    <button>Login</button>
-    <button>Forget Password</button>
-    <button>Profile</button>
-    <button>Talk to Julia</button>
+    <a href="/register"><button>Register</button></a>
+    <a href="/search/version_01"><button>Search</button></a>
+    <a href="/login"><button>Login</button></a>
+    <a href="/forgot-password"><button>Forget Password</button></a>
+    <a href="/profile/1"><button>Profile</button></a> <!-- Replace 1 with dynamic user_id if available -->
+    <a href="/julia"><button>Talk to Julia</button></a>
   </div>
 
   <!-- Animated Stream Text -->
   <div id="stream-container"></div>
 
   <!-- Link to external JavaScript file -->
-  <script src="static/javascript/home.js"></script>
+  <script src="/static/javascript/home.js"></script>
 
 </body>
 </html>
+

@@ -1,0 +1,95 @@
+:root {
+  --bg-color: #1d1d1d;
+  --text-color: #fff;
+  --cube-border: #00f;
+  --cube-shadow: rgba(0, 0, 255, 0.2);
+}
+
+body.light-mode {
+  --bg-color: #fff;
+  --text-color: #000;
+  --cube-border: #00f;
+  --cube-shadow: rgba(0, 0, 255, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+.form {
+  width: 320px;
+  padding: 20px;
+}
+
+.block-cube {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.block-cube h1 {
+  font-size: 64px;
+  margin: 0;
+}
+
+.block-cube p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.block-cube a {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #00f;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.block-cube a:hover {
+  background: #0077ff;
+}
+
+.block-cube::before,
+.block-cube::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.block-cube::before {
+  border: 2px solid var(--cube-border);
+  transform: translate(5px, 5px);
+}
+
+.block-cube::after {
+  background: var(--cube-shadow);
+  transform: translate(-5px, -5px);
+}
+
+.block-cube:hover::before,
+.block-cube:hover::after {
+  transform: translate(0px, 0px);
+}
+

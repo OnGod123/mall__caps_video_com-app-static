@@ -27,7 +27,7 @@ def token_required(f):
             data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=["HS256"])
             current_user = CreateUser.query.get(data['user_id'])
         except Exception:
-            return jsonify({'message': 'Token is invalid!'}), 403
+            return jsonify({'message': 'please login to access this features!'}), 403
 
         return f(current_user, *args, **kwargs)
     return decorated
