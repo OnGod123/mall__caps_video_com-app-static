@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraping Dashboard</title>
+    <link rel="stylesheet" href="/static/css/scrape_dashboard.css">
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+    <p>Click a button to start scraping:</p>
+
+    <button id="scrape_v01">Run Scraper v0.1 (scrape_transcripts)</button>
+    <button id="scrape_v03">Run Scraper v0.3 (Playwright)</button>
+
+    <h3>Status</h3>
+    <pre id="status">Waiting for action...</pre>
+
+    <!-- External JS file -->
+    <script src="/static/javascript/scrape_dashboard.js"></script>
+</body>
+</html>
+

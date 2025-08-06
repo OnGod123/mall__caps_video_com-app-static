@@ -47,7 +47,7 @@ from app.handlers.homes_routes import home_bp
 from app.handlers.search_routes_01 import search_v01_bp
 from app.handlers.search_routes_03 import search_v03_bp
 from app.handlers.error_routes import error_bp
-
+from app.handlers.scrape_dashboard_routes import scrape_dashboard_bp
 # === Register Blueprints ===
 
 app.register_blueprint(auth_bp)
@@ -66,6 +66,7 @@ app.register_blueprint(scrape_v03_bp)
 app.register_blueprint(julia_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(error_bp)
+app.register_blueprint(scrape_dashboard_bp)
 
 
 # === Register WebSocket Namespace ===
