@@ -2,30 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> Stream Profile</title>
+  <title>Stream Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="static/css/prfile.css" href="profile.css">
+  <link rel="stylesheet" href="/static/css/profile_update.css">
 </head>
 <body>
+
   <div class="profile-container">
+    <!-- Profile Picture -->
     <div class="block-cube profile-image">
-      <img id="profile-pic" src="" alt="Profile Image">
+      <img id="profile-pic" src="{{ profile.image or '' }}" alt="Profile Image">
     </div>
 
+    <!-- Profile Info -->
     <div class="block-cube profile-info">
-      <h2 class="username" id="username">Loading...</h2>
-      <p class="bio" id="bio">Please wait</p>
+      <h2 class="username" id="username">{{ user.username }}</h2>
+      <p class="bio" id="bio">{{ profile.bio or 'No bio yet' }}</p>
     </div>
 
-    <div class="block-cube status-update">
-      <textarea placeholder="What's on your mind?"></textarea>
-    </div>
+    <!-- Update Form -->
+    <form id="updateForm" enctype="multipart/form-data">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="block-cube">
+        <label class="section-label">Profile Image</label>
+        <input type="file" name="image">
+      </div>
+
+      <div class="block-cube">
+        <label class="section-label">Bio</label>
+        <textarea name="bio" placeholder="Write something...">{{ profile.bio }}</textarea>
+      </div>
+
+      <div class="block-cube">
+        <label class="section-label">Favorite Genres</label>
+        <input type="text" name="favorite_genres" value="{{ profile.favorite_genres }}">
+      </div>
+
+      <div class="block-cube">
+        <button type="submit" class="btn">Update Profile</button>
+      </div>
+    </form>
 
     <div class="block-cube">
       <button id="toggle-mode">Toggle Light Mode</button>
     </div>
   </div>
 
-  <script src="static/javacsropt/script.js"></script>
+  <script src="/static/javascript/update_profile.js"></script>
 </body>
 </html>
+
