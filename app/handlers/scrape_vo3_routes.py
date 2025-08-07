@@ -1,3 +1,4 @@
+import time
 from flask import Blueprint
 from app.handlers.login_routes import token_required 
 from app.utils.pipe_line_v03 import scroll_to_bottom, skip_ads, try_get_transcript, run
@@ -8,7 +9,16 @@ from playwright.sync_api import sync_playwright
 @scrape_v03_bp.route('/scrape/version_0_3_mini', methods=['GET'])
 @token_required
 def scrape_v03(current_user):
-    with sync_playwright() as playwright:
-        results = run(playwright)
-    index_results_in_elasticsearch(results)
+    start_time = time.time()
+    try:
+        with sync_playwright() as playwright:
+            results = run(playwright)
+        index_results_in_elasticsearch(results)
+        return jsonify({"status": "success", "message": "Scraping v0.3 completed successfully!"}), 200
+    except Exception as e:
+        elapsed = time.time() - start_time
+        if elapsed >= 180:  # 3 minutes
+            return jsonify({"status": "error", "message": "Your network bandwidth is slow, please try again later."}), 408
+        else:
+            return jsonify({"status": "error", "message": str(e)}), 500
     

@@ -1,0 +1,2 @@
+./bin/elasticsearch
+./bin/elasticsearch-reset-password -u elastic./bin/elasticsearch-reset-password -u elastic
