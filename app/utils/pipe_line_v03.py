@@ -65,18 +65,33 @@ def try_get_transcript(page, retries=3):
     print("Transcript not found.")
     return False
 
+def safe_goto(page, url, timeout=60000, retries=10):
+    for attempt in range(retries):
+        try:
+            print(f"Attempt {attempt + 1}: Navigating to {url}...")
+            page.goto(url, timeout=timeout, wait_until="domcontentloaded")
+            return True
+        except TimeoutError:
+            print(f"Timeout on attempt {attempt + 1}")
+            time.sleep(2)
+    return False
 
 def run(playwright: Playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
 
     print("Navigating to MrBeastGaming videos...")
-    page.goto("https://www.youtube.com/@MrBeastGaming/videos")
+    if not safe_goto(page, "https://www.youtube.com/@MrBeastGaming/videos"):
+        print("Failed to open channel page.")
+        context.close()
+        browser.close()
+        return []
     scroll_to_bottom(page)
     time.sleep(5)
 
     video_links = page.locator('a[href^="/watch?v="]').all()
+    print(f"Found {len(video_links)} video links.")
     seen = set()
     results = []
 

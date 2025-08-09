@@ -1,4 +1,5 @@
 import time
+from flask import jsonify
 from flask import Blueprint
 from app.handlers.login_routes import token_required 
 from app.utils.pipe_line_v03 import scroll_to_bottom, skip_ads, try_get_transcript, run

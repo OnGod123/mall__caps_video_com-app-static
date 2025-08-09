@@ -1,0 +1,15 @@
+vincent@DESKTOP-HFK3C5T:~/mall__caps_video_com/nginx$ sudo rm /etc/nginx/sites-enabled/default.conf
+vincent@DESKTOP-HFK3C5T:~/mall__caps_video_com/nginx$ sudo ln -s /home/vincent/mall__caps_video_com/nginx/default.conf /etc/nginx/sites-enabled/default.conf
+vincent@DESKTOP-HFK3C5T:~/mall__caps_video_com/nginx$ sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+vincent@DESKTOP-HFK3C5T:~/mall__caps_video_com/nginx$ sudo service nginx restart
+vincent@DESKTOP-HFK3C5T:~/mall__caps_video_com/nginx$ sudo lsof -i :443
+COMMAND  PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+nginx   1545     root    8u  IPv4  10609      0t0  TCP *:https (LISTEN)
+nginx   1546 www-data    8u  IPv4  10609      0t0  TCP *:https (LISTEN)
+nginx   1547 www-data    8u  IPv4  10609      0t0  TCP *:https (LISTEN)
+nginx   1548 www-data    8u  IPv4  10609      0t0  TCP *:https (LISTEN)
+nginx   1549 www-data    8u  IPv4  10609      0t0  TCP *:https (LISTEN)
+vincent@DESKTOP-HFK3C5T:~/mall__caps_video_com/nginx$ ngrok http https://localhost:443
+vincent@DESKTOP-HFK3C5T:~/mall__caps_video_com

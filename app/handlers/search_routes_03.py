@@ -2,6 +2,7 @@
 from flask import Blueprint, request, jsonify, render_template
 from flask_jwt_extended import decode_token
 from functools import wraps
+from flask import jsonify
 from app.database.models import CreateUser
 import jwt
 from app.utils.nlp_utils import extract_nlp_features 
